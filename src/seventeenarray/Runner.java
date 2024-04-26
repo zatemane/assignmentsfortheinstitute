@@ -10,7 +10,14 @@ public class Runner {
                 new FootballTeam("Команда3", "Москва", 3, 18)
         };
 
-        // Пункт 1: команды с количеством побед больше среднего
+        findTeamsWithAboveAverageWins(teams);
+        orderByLeaguePositionDescending(teams);
+        findTeamsInCity(teams);
+        editTeamInformation(teams);
+    }
+
+    // Поиск команд с количеством побед больше среднего
+    public static void findTeamsWithAboveAverageWins(FootballTeam[] teams) {
         double totalWins = 0;
         for (FootballTeam team : teams) {
             totalWins += team.getWins();
@@ -22,8 +29,10 @@ public class Runner {
                 System.out.println(team);
             }
         }
+    }
 
-        // Пункт 2: упорядочить массив по убыванию мест в лиге (сортировка пузырьком)
+    // Сортировка массива по убыванию мест в лиге
+    public static void orderByLeaguePositionDescending(FootballTeam[] teams) {
         for (int i = 0; i < teams.length - 1; i++) {
             for (int j = 0; j < teams.length - 1 - i; j++) {
                 if (teams[j].getLeaguePosition() < teams[j + 1].getLeaguePosition()) {
@@ -37,8 +46,10 @@ public class Runner {
         for (FootballTeam team : teams) {
             System.out.println(team);
         }
+    }
 
-        // Пункт 3: определить количество и вывести команды по интересующему городу
+    // Поиск и вывод команд по интересующему городу
+    public static void findTeamsInCity(FootballTeam[] teams) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("\nВведите интересующий город: ");
         String cityToSearch = scanner.nextLine();
@@ -51,8 +62,11 @@ public class Runner {
             }
         }
         System.out.println("Всего команд в городе " + cityToSearch + ": " + count);
+    }
 
-        // Пункт 4: поиск по названию команды, исправление одного из полей и вывод полной информации о команде после редактирования
+    // Поиск по названию команды, исправление одного из полей
+    public static void editTeamInformation(FootballTeam[] teams) {
+        Scanner scanner = new Scanner(System.in);
         System.out.print("\nВведите название команды для поиска и редактирования: ");
         String teamNameToEdit = scanner.nextLine();
         boolean found = false;
@@ -73,5 +87,6 @@ public class Runner {
         }
     }
 }
+
 
 
